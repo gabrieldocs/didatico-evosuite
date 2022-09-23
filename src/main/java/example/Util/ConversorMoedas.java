@@ -69,6 +69,5 @@ public class ConversorMoedas {
 
     public double converteDeLibra() {
         return this.quantia * this.libra;
-    
-
+    }
 }
