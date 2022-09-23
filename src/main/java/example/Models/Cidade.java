@@ -42,7 +42,7 @@ public class Cidade {
         this.quantidade_atracoes = quantidade_atracoes;
     }
 
-    public boolean isCidade_turistica() {
+    public boolean getCidade_turistica() {
         return cidade_turistica;
     }
 

@@ -22,19 +22,52 @@ public class DestinosController {
     }
 
     public void adicionaDestino(Destinos novoDestino) {
-        this.destinos.add(novoDestino);
+        if(
+            this.destinos != null &&
+            this.destinos.isEmpty()
+        ) {
+            this.destinos.add(novoDestino);
+        }
+        return;
     }
 
     public void removeDestino(int position) {
-        this.destinos.remove(position);
+        if(
+            this.destinos == null &&
+            this.destinos.isEmpty() == false&&
+            this.destinos.get(position) != null 
+        ){
+            this.destinos.remove(position);
+        }
     }
 
     public void substituiDestino(Destinos novoDestino, int position) {
-        this.destinos.set(position, novoDestino);
+        if(
+            this.destinos == null &&
+            this.destinos.isEmpty() == false&&
+            this.destinos.get(position) != null 
+        ) {
+            this.destinos.set(position, novoDestino);
+        }
     }
 
     public void atualizaValorDestino(Destinos novoDestino, double valor) {
-        novoDestino.setPreco(valor);
+        if(
+            this.destinos != null &&
+            this.destinos.isEmpty() == false 
+        ) {
+            Destinos d = null;
+            int index = 0;
+            for(Destinos destinos: this.destinos) {
+                
+                index +=1;
+                
+                if(destinos.getNome().equals(novoDestino.getNome())) {
+                    d = new Destinos(destinos, valor, destinos.getAtracoes());
+                }
+            }
+            this.destinos.set(index, d);
+        }
     }
 
     public Map<String, Double> buscaAtracoesNoDestino(int index) {
