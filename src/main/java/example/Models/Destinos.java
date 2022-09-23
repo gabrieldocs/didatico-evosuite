@@ -24,6 +24,23 @@ public class Destinos extends Cidade {
         this.atracoes = atracoes;
     }
 
+    public Destinos(String nome, int populacao, int quantidade_atracoes, boolean cidade_turistica, Climas clima) {
+        super(nome, populacao, quantidade_atracoes, cidade_turistica, clima);
+    }
+
+    public Destinos(Destinos destinos, double preco, Map<String, Double> atracoes) {
+        super(
+            destinos.getNome(), 
+            destinos.getPopulacao(), 
+            destinos.getQuantidade_atracoes(),
+            destinos.getCidade_turistica(),
+            destinos.getClima()
+        );
+        this.preco = preco;
+        this.atracoes = atracoes;
+    }
+
+    
     public double getPreco() {
         return preco;
     }

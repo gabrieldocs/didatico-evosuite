@@ -16,7 +16,10 @@ public class ClienteController {
             this.clientes = new ArrayList<Cliente>();
         }
 
-        if(this.clientes.isEmpty()) {
+        if(
+            this.clientes != null &&
+            this.clientes.isEmpty()
+        ) {
             this.clientes = clientes;
         }
 
@@ -34,10 +37,16 @@ public class ClienteController {
 
         if(this.clientes == null) {
             this.clientes = new ArrayList<Cliente>();
+        }
+
+        if(
+            this.clientes != null &&
+            this.clientes.isEmpty() == true
+        ) {
             this.clientes.add(cliente);
         }
 
-        if(this.clientes.isEmpty()) {
+        if(this.clientes.isEmpty() == false) {
             this.clientes.add(cliente);
         }
     }
