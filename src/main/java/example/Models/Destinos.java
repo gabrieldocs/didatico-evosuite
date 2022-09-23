@@ -9,7 +9,7 @@ public class Destinos extends Cidade {
 
     private double preco;
 
-    private Map<String, Integer> atracoes = new HashMap<String, Integer>();
+    private Map<String, Double> atracoes = new HashMap<String, Double>();
 
     public Destinos(String nome, int populacao, int quantidade_atracoes, boolean cidade_turistica, Climas clima,
             double preco) {
@@ -18,7 +18,7 @@ public class Destinos extends Cidade {
     }
 
     public Destinos(String nome, int populacao, int quantidade_atracoes, boolean cidade_turistica, Climas clima,
-            double preco, Map<String, Integer> atracoes) {
+            double preco, Map<String, Double> atracoes) {
         super(nome, populacao, quantidade_atracoes, cidade_turistica, clima);
         this.preco = preco;
         this.atracoes = atracoes;
@@ -32,15 +32,20 @@ public class Destinos extends Cidade {
         this.preco = preco;
     }
 
-    public Map<String, Integer> getAtracoes() {
+    public Map<String, Double> getAtracoes() {
         return atracoes;
     }
 
-    public void setAtracoes(Map<String, Integer> atracoes) {
+    public void setAtracoes(Map<String, Double> atracoes) {
         this.atracoes = atracoes;
     }    
 
-    public void adicionaAtracoes(String arg0, Integer arg1) {
+    public void adicionaAtracoes(String arg0, Double arg1) {
         this.atracoes.put(arg0, arg1);
+        this.preco += arg1;
+    }
+
+    public void removeAtracoes(String arg0) {
+        this.atracoes.remove(arg0);
     }
 }

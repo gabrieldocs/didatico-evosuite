@@ -9,6 +9,10 @@ public class Roteiro {
         this.roteiro = roteiro;
     }
 
+    public Roteiro(Destinos destino) {
+        this.roteiro.add(destino);
+    }
+
     public ArrayList<Destinos> getRoteiro() {
         return roteiro;
     }
@@ -19,5 +23,9 @@ public class Roteiro {
 
     public void adicionaAoRoteiro(Destinos destino) {
         this.roteiro.add(destino);
+    }
+
+    public void removerRoteiro(int position) {
+        this.roteiro.remove(position);
     }
 }

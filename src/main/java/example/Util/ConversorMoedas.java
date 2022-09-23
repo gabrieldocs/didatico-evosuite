@@ -15,6 +15,14 @@ public class ConversorMoedas {
         this.quantia = quantia;
     }
 
+    
+
+    public ConversorMoedas(double euro, double quantia) {
+        this.euro = euro;
+        this.quantia = quantia;
+    }
+
+
     public double getDolar() {
         return dolar;
     }
@@ -47,27 +55,4 @@ public class ConversorMoedas {
         this.quantia = quantia;
     }
 
-    public double converteParaDolar() {
-        return this.quantia / this.dolar;
-    }
-
-    public double converteParaEuro() {
-        return this.quantia / this.euro;
-    }
-
-    public double converteParaLibra() {
-        return this.quantia / this.libra;
-    }
-
-    public double converteDeDolar() {
-        return this.quantia * this.dolar;
-    }
-
-    public double converteDeEuro() {
-        return this.quantia * this.euro;
-    }
-
-    public double converteDeLibra() {
-        return this.quantia * this.libra;
-    }
 }
