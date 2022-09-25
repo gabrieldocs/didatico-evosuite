@@ -45,7 +45,7 @@ public class Carteira {
     }
 
 
-    public void retiradaSaldo(double valor) {
+    public void compraSaldo(double valor) {
         try {
             if(this.saldo >= valor) {
                 this.saldo -= valor;
@@ -81,6 +81,10 @@ public class Carteira {
         }
     }
 
-
+    public void combinaSaldo() {
+        this.saldo = this.saldo + this.limiteCredito + this.limiteDebito;
+        this.setLimiteCredito(0.0);
+        this.setLimiteDebito(0.0);
+    }
 }
 

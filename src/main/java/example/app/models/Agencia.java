@@ -36,17 +36,59 @@ public class Agencia extends Empresa {
         this.viagens = viagens;
     }
 
-    public void AgenciaAdicionaClientes(Cliente cliente) {
+    public void agenciaAdicionaClientes(Cliente cliente) {
         this.adicionaCliente(cliente);
     }
     
-    public void marcaViagem(Cliente cliente, Destino destino) {
+    public void adicionaDestino(Destino destino) {
+        this.destinos.put(destino, destino.getPreco());
+    }
+
+    public Boolean buscaDestino(Destino destino) {
+        Double destinoExists = this.destinos.get(destino);
+
+        if(destinoExists == null){
+            return false;
+        }
+
+        return true;
+    }
+
+    public void agendaViagem(Cliente cliente, Destino destino) {
+
         Boolean auxClienteExiste = this.buscaCliente(cliente);
-        if(auxClienteExiste) {
-            this.viagens.put(cliente, destino);
+        Boolean auxDestinoExiste = this.buscaDestino(destino);
+
+        if(auxClienteExiste && cliente.getIdade() > 21 && auxDestinoExiste) {
+            if(cliente.carteira.getSaldo() >= destino.getPreco()) {
+                cliente.carteira.compraSaldo(destino.getPreco());
+                this.viagens.put(cliente, destino);
+                return;
+            } else if(cliente.carteira.getLimiteCredito() >= destino.getPreco()){
+                cliente.carteira.compraNoCredito(destino.getPreco());
+                this.viagens.put(cliente, destino);
+                return;
+            } else if(cliente.carteira.getLimiteDebito() >= destino.getPreco()) {
+                cliente.carteira.compraNoDebito(destino.getPreco());
+                this.viagens.put(cliente, destino);
+                return;
+            } else if(
+                cliente.carteira.getSaldo() + cliente.carteira.getLimiteCredito() + cliente.carteira.getLimiteDebito() >= destino.getPreco()
+            ) {
+                cliente.carteira.combinaSaldo();
+                cliente.carteira.compraSaldo(destino.getPreco());
+                this.viagens.put(cliente, destino);
+                return;
+            } else {
+                System.out.println("Não foi possível comprar passagens! Saldo insuficiente!");
+                return;
+            }
         } else {
+
+            this.adicionaDestino(destino);
             this.adicionaCliente(cliente);
-            marcaViagem(cliente, destino);
+
+            agendaViagem(cliente, destino);
         }
     }
 
@@ -65,6 +107,7 @@ public class Agencia extends Empresa {
             auxSaldo += viagem.getValue().getPreco(); 
         }
 
+        this.setCaixa(auxSaldo);
         return auxSaldo;
     }
 }

@@ -1,22 +1,23 @@
 package example.app.models;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Map;
 
 public class Empresa {
 
     protected String nome;
     protected double caixa;
-    protected Map<Integer, Map<Cliente,Boolean>> clientes;
+    protected Map<Cliente,Boolean> clientes;
 
-    public Empresa(String nome, Map<Integer, Map<Cliente, Boolean>> clientes) {
+    public Empresa(String nome, Map<Cliente, Boolean> clientes) {
         this.nome = nome;
         this.caixa = 0.0;
         this.clientes = clientes;
     }
 
     
-    public Empresa(String nome, double caixa, Map<Integer, Map<Cliente, Boolean>> clientes) {
+    public Empresa(String nome, double caixa, Map<Cliente, Boolean> clientes) {
         this.nome = nome;
         this.caixa = caixa;
         this.clientes = clientes;
@@ -31,11 +32,11 @@ public class Empresa {
         this.nome = nome;
     }
 
-    public Map<Integer, Map<Cliente, Boolean>> getClientes() {
+    public Map<Cliente, Boolean> getClientes() {
         return clientes;
     }
 
-    public void setClientes(Map<Integer, Map<Cliente, Boolean>> clientes) {
+    public void setClientes(Map<Cliente, Boolean> clientes) {
         this.clientes = clientes;
     }
 
@@ -48,13 +49,74 @@ public class Empresa {
     }
 
     public void adicionaCliente(Cliente cliente) {
-        int auxClientesSize = this.clientes.size();
-        Map<Cliente, Boolean> auxNovoCliente = new HashMap<Cliente,Boolean>();
-        auxNovoCliente.put(cliente, cliente.getIdade() > 21 ? true : false);
-        this.clientes.put(auxClientesSize, auxNovoCliente);
+        this.clientes.put(cliente, cliente.getIdade() > 21 ? true : false);
     }
 
-    public void removeCliente(int posicao) {
-        this.clientes.remove(posicao);
+    public void removeCliente(Cliente cliente) {
+        this.clientes.remove(cliente);
     }
+
+    public Boolean buscaCliente(Cliente cliente) {
+
+        Boolean auxCliente = this.clientes.get(cliente);
+
+        if(auxCliente == null) {
+            return false;
+        }
+        return true;
+    }
+
+    public Boolean buscaClienteAtivo(Cliente cliente) {
+
+        Boolean auxCliente = this.clientes.get(cliente);
+
+        if(auxCliente) {
+            return true;
+        }
+        return false;
+    }
+
+    public ArrayList<Cliente> listaTodosClientes() {
+        ArrayList<Cliente> auxClientes = new ArrayList<Cliente>(); 
+        Iterator<Map.Entry<Cliente,Boolean>> iterador = this.clientes.entrySet().iterator();
+        
+        while(iterador.hasNext())
+        {
+            Map.Entry<Cliente, Boolean> cliente = iterador.next();
+
+            auxClientes.add(cliente.getKey()); 
+        }
+
+        return auxClientes;
+    }
+
+    public ArrayList<Cliente> listaTodosClientesAtivos() {
+        ArrayList<Cliente> auxClientes = new ArrayList<Cliente>(); 
+        Iterator<Map.Entry<Cliente,Boolean>> iterador = this.clientes.entrySet().iterator();
+        
+        while(iterador.hasNext())
+        {
+            Map.Entry<Cliente, Boolean> cliente = iterador.next();
+
+            if(cliente.getKey().getIdade() > 21)
+                auxClientes.add(cliente.getKey()); 
+        }
+
+        return auxClientes;
+    }
+
+    public ArrayList<Cliente> listaTodosClientesInativos() {
+        ArrayList<Cliente> auxClientes = new ArrayList<Cliente>(); 
+        Iterator<Map.Entry<Cliente,Boolean>> iterador = this.clientes.entrySet().iterator();
+        
+        while(iterador.hasNext())
+        {
+            Map.Entry<Cliente, Boolean> cliente = iterador.next();
+
+            if(cliente.getKey().getIdade() < 21)
+                auxClientes.add(cliente.getKey()); 
+        }
+
+        return auxClientes;
+    }    
 }
