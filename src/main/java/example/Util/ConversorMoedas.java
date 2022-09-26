@@ -112,7 +112,16 @@ public class ConversorMoedas {
      * @param quantia
      * @return
      */
+    public double converteQuantiaParaEuro(double quantia) {
+        return quantia * this.euro;
+    }
+
+    /**
+     * 
+     * @param quantia
+     * @return
+     */
     public double converteQuantiaParaLibra(double quantia) {
-        return quantia * this.dolar;
+        return this.quantia * this.dolar;
     }
 }
