@@ -25,7 +25,7 @@ public class Agencia extends Empresa {
     public Agencia(String nome, double caixa, Map<Cliente, Boolean> clientes) {
         super(nome, caixa, clientes);
         this.viagens = new HashMap<Cliente,Destino>();
-        this.promocao = 0.0;
+        this.promocao = 1.0;
         this.estacao = null;
     }
 
@@ -125,7 +125,7 @@ public class Agencia extends Empresa {
      */
     public void adicionaDestino(Destino destino) {
         if(this.estacao == Estacao.VERAO) {
-            this.destinos.put(destino, destino.getPreco() * 1.20);
+            this.destinos.put(destino, destino.getPreco() * 1.15);
         } else if(this.estacao == Estacao.PRIMAVERA) {
             this.destinos.put(destino, destino.getPreco() * 1.15);
         } else if (this.estacao == Estacao.OUTONO) {

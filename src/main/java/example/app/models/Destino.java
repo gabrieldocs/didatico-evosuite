@@ -104,6 +104,6 @@ public class Destino extends Cidade {
      * @param posicao
      */
     public void removeAtracao(int posicao) {
-        this.atracoes.remove(posicao);
+        this.atracoes.remove(posicao + 1);
     }
 }

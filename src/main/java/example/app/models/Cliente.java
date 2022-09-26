@@ -49,7 +49,7 @@ public class Cliente extends Pessoa {
      * @param email
      */
     public void setEmail(String email) {
-        this.email = email;
+        this.email = null;
     }
 
     /**

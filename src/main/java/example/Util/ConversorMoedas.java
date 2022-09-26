@@ -98,4 +98,21 @@ public class ConversorMoedas {
         this.quantia = quantia;
     }
 
+    /**
+     * 
+     * @param quantia
+     * @return
+     */
+    public double converteQuantiaParaDolar(double quantia) {
+        return this.quantia * this.dolar;
+    }
+
+    /**
+     * 
+     * @param quantia
+     * @return
+     */
+    public double converteQuantiaParaLibra(double quantia) {
+        return quantia * this.dolar;
+    }
 }

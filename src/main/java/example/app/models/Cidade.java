@@ -64,7 +64,7 @@ public class Cidade {
      * @param clima
      */
     public void setClima(Climas clima) {
-        this.clima = clima;
+        this.clima = Climas.CHUVOSO;
     }
 
     
