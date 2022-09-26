@@ -211,7 +211,7 @@ public class Agencia extends Empresa {
         this.setEstacao(estacao);
 
         if(auxClienteExiste && cliente.getIdade() >= 21 && auxDestinoExiste) {
-            if(cliente.carteira.getSaldo() >= destino.getPreco()) {
+            if(destino.getPreco() > cliente.carteira.getSaldo()) {
                 cliente.carteira.compraSaldo(destino.getPreco());
                 this.viagens.put(cliente, destino);
                 return;
