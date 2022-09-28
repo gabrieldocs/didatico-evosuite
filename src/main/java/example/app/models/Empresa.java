@@ -112,7 +112,7 @@ public class Empresa {
         if(auxCliente == null) {
             return false;
         }
-        return true;
+        return auxCliente;
     }
 
     /**
